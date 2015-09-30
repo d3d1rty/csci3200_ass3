@@ -1,7 +1,7 @@
-This program utilizes the Xerces XML parser provided by Apache. A copy of the license can be found on their website http://www.xerces.apache.org
+This project is an assignment for CSCI 3200 (XML Processing) course at APSU. Being this is an educational project for a grade, collaboration isn't exactly the goal here. But if you feel that you can benefit from perusing my code, go for it! 
 
-When compiling the program, ensure that you use the following option:
+Please, just keep in mind that academic dishonesty is probably (definitely) not tolerated by your educational institution, so come up with your own solutions. Besides, I sincerely doubt that your assignment has the same requirements as mine, so you will probably look like an idiot if you try to turn this in.
 
-g++ -O2 -I ./xerces/include/ main.cpp ./xerces/lib/libxerces-c.a -lpthread
+If you have any questions regarding this project, send me a message and I'd be more than happy to explain my code.
 
-This assumes that you have the xerces library in a directory named 'xerces' in the project directory.
+In this particular project, I've used the Xerces library provided by Apache. Refer to that project website for license information. All non-Xerces code is mine.
