@@ -1,0 +1,7 @@
+This program utilizes the Xerces XML parser provided by Apache. A copy of the license can be found on their website http://www.xerces.apache.org
+
+When compiling the program, ensure that you use the following option:
+
+g++ -O2 -I ./xerces/include/ main.cpp ./xerces/lib/libxerces-c.a -lpthread
+
+This assumes that you have the xerces library in a directory named 'xerces' in the project directory.
