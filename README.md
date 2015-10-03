@@ -10,7 +10,7 @@ The purpose of the project is to extract specialized information from a well-for
 ##Compiling
 To compile the project, use the following command:
 
-g++ -O2 -I ./xerces/include/ main.cpp ./xerces/lib/libxerces-c.a -lpthread -lcurl -licuuc
+`g++ -O2 -I ./xerces/include/ main.cpp ./xerces/lib/libxerces-c.a -lpthread -lcurl -licuuc
 
 ##Dependencies
 
