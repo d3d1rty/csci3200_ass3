@@ -4,14 +4,8 @@ This project is an assignment for CSCI 3200 (XML Processing) course at APSU. Bei
 
 For reference, I have included the original assignment instructions. 
 
-##Academic Honesty
-Please, just keep in mind that academic dishonesty is probably (definitely) not tolerated by your educational institution, so come up with your own solutions. Besides, I sincerely doubt that your assignment has the same requirements as mine, so you will probably look like an idiot if you try to turn this in.
-
-##Questions/Comments/Concerns
-If you have any questions regarding this project, send me a message and I'd be more than happy to explain my code.
-
-##Credits
-In this particular project, I've used the Xerces library provided by Apache. Refer to that project website for license information. All non-Xerces code is mine.
+##What it Does
+The purpose of the project is to extract specialized information from a well-formed XML document into separate comma-separated values (CSV) files. This is accomplished by using the Xerces SAX parser to parse through the XML document and creating specialized event handlers to perform the required actions. Refer to the comments in the code for more detailed information.
 
 ##Compiling
 To compile the project, use the following command:
@@ -25,3 +19,13 @@ ICU- https://icu-project.org/
 Libcurl- https://libcurl.org/
 
 Xerces- https://xerces.apache.org/
+
+##Academic Honesty
+Please, just keep in mind that academic dishonesty is probably (definitely) not tolerated by your educational institution, so come up with your own solutions. Besides, I sincerely doubt that your assignment has the same requirements as mine, so you will probably look like an idiot if you try to turn this in.
+
+##Credits
+In this particular project, I've used the Xerces library provided by Apache. Refer to that project website for license information. All non-Xerces code is mine.
+
+##Questions/Comments/Concerns
+If you have any questions regarding this project, send me a message and I'd be more than happy to explain my code.
+
