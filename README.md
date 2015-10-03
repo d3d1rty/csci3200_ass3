@@ -2,6 +2,8 @@
 ##About
 This project is an assignment for CSCI 3200 (XML Processing) course at APSU. Being this is an educational project for a grade, collaboration isn't exactly the goal here. But if you feel that you can benefit from perusing my code, go for it! 
 
+For reference, I have included the original assignment instructions. 
+
 ##Academic Honesty
 Please, just keep in mind that academic dishonesty is probably (definitely) not tolerated by your educational institution, so come up with your own solutions. Besides, I sincerely doubt that your assignment has the same requirements as mine, so you will probably look like an idiot if you try to turn this in.
 
