@@ -5,3 +5,7 @@ Please, just keep in mind that academic dishonesty is probably (definitely) not 
 If you have any questions regarding this project, send me a message and I'd be more than happy to explain my code.
 
 In this particular project, I've used the Xerces library provided by Apache. Refer to that project website for license information. All non-Xerces code is mine.
+
+To compile the project, use the following command:
+
+g++ -O2 -I ./xerces/include/ main.cpp ./xerces/lib/libxerces-c.a -lpthread -lcurl -licuuc

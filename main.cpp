@@ -17,6 +17,6 @@ int main() {
         cout << "Unable to initialize the parser.\n";
         return 1;
     }
-
+    cout << "this is a test\n";
     return 0;
 }
