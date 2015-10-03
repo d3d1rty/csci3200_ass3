@@ -24,7 +24,9 @@ Xerces- https://xerces.apache.org/
 Please, just keep in mind that academic dishonesty is probably (definitely) not tolerated by your educational institution, so come up with your own solutions. Besides, I sincerely doubt that your assignment has the same requirements as mine, so you will probably look like an idiot if you try to turn this in.
 
 ##Credits
-In this particular project, I've used the Xerces library provided by Apache. Refer to that project website for license information. All non-Xerces code is mine.
+In this particular project, I've used the Xerces library provided by Apache. Refer to that project website for license information.
+
+Big thanks to Dr. Nicholson for all guidance and assistance provided throughout the project. In addition to the personal assistance he provided in getting my environment set up correctly, his instructional videos for building a SAX parser were immensely helpful
 
 ##Questions/Comments/Concerns
 If you have any questions regarding this project, send me a message and I'd be more than happy to explain my code.
