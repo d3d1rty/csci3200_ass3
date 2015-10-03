@@ -9,3 +9,11 @@ In this particular project, I've used the Xerces library provided by Apache. Ref
 To compile the project, use the following command:
 
 g++ -O2 -I ./xerces/include/ main.cpp ./xerces/lib/libxerces-c.a -lpthread -lcurl -licuuc
+
+Dependencies:
+
+ICU- https://icu-project.org/
+
+Libcurl- https://libcurl.org/
+
+Xerces- https://xerces.apache.org/
