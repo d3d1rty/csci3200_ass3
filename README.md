@@ -8,9 +8,13 @@ For reference, I have included the original assignment instructions.
 The purpose of the project is to extract specialized information from a well-formed XML document into separate comma-separated values (CSV) files. This is accomplished by using the Xerces SAX parser to parse through the XML document and creating specialized event handlers to perform the required actions. Refer to the comments in the code for more detailed information.
 
 ##Compiling
+This project was compiled with the g++ compiler on an Arch linux machine. It *should* work with other Linux environments after you have satisfied the dependencies. Windows developers should be aware some changes to the program as well as system configuration may be necessary for it to function correctly on your system. 
+
 To compile the project, use the following command:
 
 `g++ -O2 -I ./xerces/include/ main.cpp ./xerces/lib/libxerces-c.a -lpthread -lcurl -licuuc`
+
+Make sure that you include the `-lcurl -licuuc` flags or it will not compile.
 
 ##Dependencies
 
@@ -26,7 +30,7 @@ Please, just keep in mind that academic dishonesty is probably (definitely) not 
 ##Credits
 In this particular project, I've used the Xerces library provided by Apache. Refer to that project website for license information.
 
-Big thanks to Dr. Nicholson for all guidance and assistance provided throughout the project. In addition to the personal assistance he provided in getting my environment set up correctly, his instructional videos for building a SAX parser were immensely helpful
+Big thanks to Dr. Nicholson for all guidance and assistance provided throughout the project. In addition to the personal assistance he provided in getting my environment set up correctly, his instructional videos for building a SAX parser were immensely helpful.
 
 ##Questions/Comments/Concerns
 If you have any questions regarding this project, send me a message and I'd be more than happy to explain my code.

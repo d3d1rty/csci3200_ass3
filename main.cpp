@@ -19,7 +19,20 @@ using namespace xercesc;
 using namespace std;
 
 class MySAXHandler : public DefaultHandler {
+    void startElement(
+        const XMLCh* const uri,
+        const XMLCh* const localname,
+        const XMLCh* const qname,
+        const Attributes& attrs);
+    void fatalError(
+        const SAXParseException& ex);
+    void MySAXHandler::startElement(
+        const XMLCh* const uri,
+        const XMLCh* const localname,
+        const XMLCh* const qname,
+        const Attributes& attrs) {
 
+    }
 };
 
 int main() {
@@ -40,7 +53,7 @@ int main() {
     parser->setFeature(XMLUni::fgSAX2CoreNameSpaces, true);
 
     // creates the handler object and sets it to handle content and errors
-    MySAXHandler handler = new MySAXHandler();
+    MySAXHandler *handler = new MySAXHandler();
     parser->setContentHandler(handler);
     parser->setErrorHandler(handler);
 
@@ -48,13 +61,17 @@ int main() {
         parser->parse(xmlFilename.c_str());
     } catch (const XMLException &ex) {
         // catches XML related errors, cleans up pointers, returns 1
-        cout << "Unexpected error occurred\n";
+        char *message = XMLString::transcode(ex.getMessage());
+        cout << "XML error: " << message << endl;
+        XMLString::release(&message);
         delete parser;
         delete handler;
         return 1;
     } catch (const SAXParseException &ex) {
         // catches parser related errors, cleans up pointers, returns 1
-        cout << "Unexpected error occurred\n";
+        char *message = XMLString::transcode(ex.getMessage());
+        cout << "Parsing error: " << message << endl;
+        XMLString::release(&message);
         delete parser;
         delete handler;
         return 1;
@@ -66,6 +83,7 @@ int main() {
         return 1;
     }
 
+    cout << xmlFilename << " successfully parsed!\n";
     // cleans up pointers and ends program successfully
     delete parser;
     delete handler;
