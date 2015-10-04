@@ -19,23 +19,99 @@ using namespace xercesc;
 using namespace std;
 
 class MySAXHandler : public DefaultHandler {
-    void startElement(
-        const XMLCh* const uri,
-        const XMLCh* const localname,
-        const XMLCh* const qname,
-        const Attributes& attrs);
-    void fatalError(
-        const SAXParseException& ex);
-    void MySAXHandler::startElement(
-        const XMLCh* const uri,
-        const XMLCh* const localname,
-        const XMLCh* const qname,
-        const Attributes& attrs) {
+private:
+    bool success;
+    bool inCountry;
+    bool inCountryName;
+    bool inCity;
+    bool inCityName;
+    bool inReligion;
 
+    void startElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname, const Attributes& attrs);
+    void endElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname);
+    void characters(const XMLCh* const chars, const XMLSize_t length);
+    void fatalError(const SAXParseException& ex);
+
+public:
+    MySAXHandler() {
+        success = true;
+        bool inCountry = false;
+        bool inCountryName = false;
+        bool inCity = false;
+        bool inCityName = false;
+        bool inReligion = false;
+    }
+    bool isSuccessful(){
+        return success;
     }
 };
 
+void MySAXHandler::startElement(
+    const XMLCh* const uri,
+    const XMLCh* const localname,
+    const XMLCh* const qname,
+    const Attributes& attrs) {
+        char *message = XMLString::transcode(localname);
+
+        if (strcmp(message, "country") == 0) {
+            inCountry = true;
+        } else if (inCountry && !inCity && strcmp(message, "name") == 0) {
+            inCountryName = true;
+        } else if (inCountry && strcmp(message, "city") == 0) {
+            inCity = true;
+        } else if (inCity && strcmp(message, "name") == 0) {
+            inCityName = true;
+        } else if (inCountry && strcmp(message, "religions") == 0) {
+            inReligion = true;
+        } 
+
+        XMLString::release(&message);
+}
+void MySAXHandler::endElement(
+    const XMLCh* const uri,
+    const XMLCh* const localname,
+    const XMLCh* const qname) {
+        char *message = XMLString::transcode(localname);
+        if (strcmp(message, "religions") == 0) {
+            inReligion = false;
+        } else if (inCity && strcmp(message, "name") == 0) {
+            inCityName = false;
+        } else if (strcmp(message, "city") == 0) {
+            inCity = false;
+        } else if (inCountry && !inCity && strcmp(message, "name") == 0) {
+            inCountryName = false;
+        } else if (strcmp(message, "country") == 0) {
+            inCountry = false;
+        }
+
+        XMLString::release(&message);
+}
+void MySAXHandler::characters(
+    const XMLCh* const chars,
+    const XMLSize_t length) {
+        char *message = new char[length + 1];
+        XMLString::transcode(chars, message, length);
+        if (inCountryName) {
+            cout << "COUNTRY: " << message << endl;
+        } else if (inCityName) {
+            cout << "CITY: " << message << endl;
+        } else if (inReligion) {
+            cout << "RELIGION: " << message << endl;
+        }
+        delete [] message;
+}
+void MySAXHandler::fatalError(
+    const SAXParseException& ex) {
+        char *message = XMLString::transcode(ex.getMessage());
+        cout << "Error during parsing: " << message << endl;
+        XMLString::release(&message);
+        success = false;
+}
+
 int main() {
+    bool errorOccurred;
+    string xmlFilename = "test.xml";
+
     // tries to initialize the xml parser
     try {
         XMLPlatformUtils::Initialize();
@@ -44,8 +120,6 @@ int main() {
         cout << "Unable to initialize the parser.\n";
         return 1;
     }
-
-    string xmlFilename = "mondial-3.0.xml";
 
     // creates the parser object and sets validation and namespaces to true
     SAX2XMLReader *parser = XMLReaderFactory::createXMLReader();
@@ -64,28 +138,28 @@ int main() {
         char *message = XMLString::transcode(ex.getMessage());
         cout << "XML error: " << message << endl;
         XMLString::release(&message);
-        delete parser;
-        delete handler;
-        return 1;
+        errorOccurred = true;
     } catch (const SAXParseException &ex) {
         // catches parser related errors, cleans up pointers, returns 1
         char *message = XMLString::transcode(ex.getMessage());
         cout << "Parsing error: " << message << endl;
         XMLString::release(&message);
-        delete parser;
-        delete handler;
-        return 1;
+        errorOccurred = true;
     } catch (...) {
         // catches all other unanticipated errors, cleans up pointers, returns 1
         cout << "Unexpected error occurred\n";
+        errorOccurred = true;
+    }
+
+    if (!handler->isSuccessful() || errorOccurred) {
         delete parser;
         delete handler;
         return 1;
+    } else {
+        cout << xmlFilename << " successfully parsed!\n";
+        // cleans up pointers and ends program successfully
+        delete parser;
+        delete handler;
+        return 0;
     }
-
-    cout << xmlFilename << " successfully parsed!\n";
-    // cleans up pointers and ends program successfully
-    delete parser;
-    delete handler;
-    return 0;
 }
