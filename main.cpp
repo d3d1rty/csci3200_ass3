@@ -18,8 +18,10 @@ This program uses a SAX parser to extract information from an XML document
 using namespace xercesc;
 using namespace std;
 
+// creates the MySAXHandler class which extends the DefaultHandler class
 class MySAXHandler : public DefaultHandler {
 private:
+    // declares variables needed for parsing the file
     bool success;
     bool inCountry;
     bool inCountryName;
@@ -27,12 +29,14 @@ private:
     bool inCityName;
     bool inReligion;
 
+    // prototypes the methods which will be overloaded
     void startElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname, const Attributes& attrs);
     void endElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname);
     void characters(const XMLCh* const chars, const XMLSize_t length);
     void fatalError(const SAXParseException& ex);
 
 public:
+    // overloads the default constructor for the MySAXHandler() object
     MySAXHandler() {
         success = true;
         bool inCountry = false;
@@ -41,11 +45,14 @@ public:
         bool inCityName = false;
         bool inReligion = false;
     }
+
+    // returns the value of the success member variable for error handling purposes
     bool isSuccessful(){
         return success;
     }
 };
 
+// overloads the startElement() method inherited from DefaultHandler class
 void MySAXHandler::startElement(
     const XMLCh* const uri,
     const XMLCh* const localname,
@@ -67,6 +74,8 @@ void MySAXHandler::startElement(
 
         XMLString::release(&message);
 }
+
+// overloads the endElement() method inherited from DefaultHandler class
 void MySAXHandler::endElement(
     const XMLCh* const uri,
     const XMLCh* const localname,
@@ -86,6 +95,8 @@ void MySAXHandler::endElement(
 
         XMLString::release(&message);
 }
+
+// overloads the characters() method inherited from DefaultHandler class
 void MySAXHandler::characters(
     const XMLCh* const chars,
     const XMLSize_t length) {
@@ -100,6 +111,8 @@ void MySAXHandler::characters(
         }
         delete [] message;
 }
+
+// overloads the fataError() method inherited from DefaultHandler class
 void MySAXHandler::fatalError(
     const SAXParseException& ex) {
         char *message = XMLString::transcode(ex.getMessage());
@@ -116,7 +129,7 @@ int main() {
     try {
         XMLPlatformUtils::Initialize();
     } catch (const XMLException &exception) {
-        // catches error is unable to initialize parser and returns 1
+        // catches error if unable to initialize parser and ends program with error status
         cout << "Unable to initialize the parser.\n";
         return 1;
     }
@@ -134,24 +147,25 @@ int main() {
     try {
         parser->parse(xmlFilename.c_str());
     } catch (const XMLException &ex) {
-        // catches XML related errors, cleans up pointers, returns 1
+        // catches XML related errors
         char *message = XMLString::transcode(ex.getMessage());
         cout << "XML error: " << message << endl;
         XMLString::release(&message);
         errorOccurred = true;
     } catch (const SAXParseException &ex) {
-        // catches parser related errors, cleans up pointers, returns 1
+        // catches parser related errors
         char *message = XMLString::transcode(ex.getMessage());
         cout << "Parsing error: " << message << endl;
         XMLString::release(&message);
         errorOccurred = true;
     } catch (...) {
-        // catches all other unanticipated errors, cleans up pointers, returns 1
+        // catches all other unanticipated errors
         cout << "Unexpected error occurred\n";
         errorOccurred = true;
     }
 
     if (!handler->isSuccessful() || errorOccurred) {
+        // cleans up pointers and ends program with error status
         delete parser;
         delete handler;
         return 1;
