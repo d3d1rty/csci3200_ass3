@@ -28,6 +28,12 @@ private:
     bool inCity;
     bool inCityName;
     bool inReligion;
+    int index;
+    string myBuffer;
+    vector<string> countryInfo;
+    vector<int> countryIndexes;
+    vector<int> cityIndexes;
+    vector<int> religionIndexes;
 
     // prototypes the methods which will be overloaded
     void startElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname, const Attributes& attrs);
@@ -39,16 +45,29 @@ public:
     // overloads the default constructor for the MySAXHandler() object
     MySAXHandler() {
         success = true;
-        bool inCountry = false;
-        bool inCountryName = false;
-        bool inCity = false;
-        bool inCityName = false;
-        bool inReligion = false;
+        inCountry = false;
+        inCountryName = false;
+        inCity = false;
+        inCityName = false;
+        inReligion = false;
+        index = 0;
     }
 
     // returns the value of the success member variable for error handling purposes
     bool isSuccessful(){
         return success;
+    }
+    vector<string> getCountryInfo() {
+        return countryInfo;
+    }
+    vector<int> getCountryIndexes() {
+        return countryIndexes;
+    }
+    vector<int> getCityIndexes() {
+        return cityIndexes;
+    }
+    vector<int> getReligionIndexes() {
+        return religionIndexes;
     }
 };
 
@@ -81,6 +100,7 @@ void MySAXHandler::endElement(
     const XMLCh* const localname,
     const XMLCh* const qname) {
         char *message = XMLString::transcode(localname);
+
         if (strcmp(message, "religions") == 0) {
             inReligion = false;
         } else if (inCity && strcmp(message, "name") == 0) {
@@ -102,13 +122,32 @@ void MySAXHandler::characters(
     const XMLSize_t length) {
         char *message = new char[length + 1];
         XMLString::transcode(chars, message, length);
-        if (inCountryName) {
-            cout << "COUNTRY: " << message << endl;
+        if (inCountryName && !inCity && !inReligion) {
+            myBuffer += message;
+            //cout << "COUNTRY: " << myBuffer << endl;
+            //cout << "index: " << index << endl;
+            countryInfo.push_back(myBuffer);
+            countryIndexes.push_back(index);
+            myBuffer = "";
+            index++;
         } else if (inCityName) {
-            cout << "CITY: " << message << endl;
+            myBuffer += message;
+            //cout << "CITY: " << myBuffer << endl;
+            //cout << "index: " << index << endl;
+            countryInfo.push_back(myBuffer);
+            cityIndexes.push_back(index);
+            myBuffer = "";
+            index++;
         } else if (inReligion) {
-            cout << "RELIGION: " << message << endl;
+            myBuffer += message;
+            //cout << "RELIGION: " << myBuffer << endl;
+            //cout << "index: " << index << endl;
+            countryInfo.push_back(myBuffer);
+            religionIndexes.push_back(index);
+            myBuffer = "";
+            index++;
         }
+
         delete [] message;
 }
 
@@ -121,9 +160,18 @@ void MySAXHandler::fatalError(
         success = false;
 }
 
+void writeCountryFile(vector<string>, vector<int>);
+void writeCityFile(vector<string>, vector<int>, vector<int>);
+void writeReligionFile(vector<string>, vector<int>, vector<int>);
+
 int main() {
     bool errorOccurred;
     string xmlFilename = "test.xml";
+    vector<string> m_countryInfo;
+    vector<int> m_countryIndexes;
+    vector<int> m_cityIndexes;
+    vector<int> m_religionIndexes;
+
 
     // tries to initialize the xml parser
     try {
@@ -164,16 +212,71 @@ int main() {
         errorOccurred = true;
     }
 
-    if (!handler->isSuccessful() || errorOccurred) {
+    m_countryInfo = handler->getCountryInfo();
+    m_countryIndexes = handler->getCountryIndexes();
+    m_cityIndexes = handler->getCityIndexes();
+    m_religionIndexes = handler->getReligionIndexes();
+
+    //writeCountryFile(m_countryInfo, m_countryIndexes);
+    writeReligionFile(m_countryInfo, m_countryIndexes, m_religionIndexes);
+    //writeCityFile(m_countryInfo, m_countryIndexes, m_cityIndexes);
+
+    if (handler->isSuccessful() || !errorOccurred) {
+        // cleans up pointers and ends program successfully
+        cout << xmlFilename << " successfully parsed!\n";
+        delete parser;
+        delete handler;
+        return 0;
+    } else {
+
         // cleans up pointers and ends program with error status
         delete parser;
         delete handler;
         return 1;
-    } else {
-        cout << xmlFilename << " successfully parsed!\n";
-        // cleans up pointers and ends program successfully
-        delete parser;
-        delete handler;
-        return 0;
     }
+}
+
+void writeCountryFile(
+    vector<string> m_countryInfo,
+    vector<int> m_countryIndexes) {
+        int index = 0;
+        int i = 0;
+
+        while (i < m_countryIndexes.size()) {
+            index = m_countryIndexes[i];
+            cout << m_countryInfo[index] << endl;
+            i++;
+        }
+}
+
+void writeCityFile(
+    vector<string> m_countryInfo,
+    vector<int> m_countryIndexes,
+    vector<int> m_cityIndexes) {
+        int index = 0;
+        int i = 0;
+
+}
+
+void writeReligionFile(vector<string> m_countryInfo,
+    vector<int> m_countryIndexes,
+    vector<int> m_religionIndexes) {
+        int index = 0;
+        int nextIndex = 0;
+        int jIndex = 0;
+        int i = 0;
+        int j = 0;
+
+        while (i < m_countryIndexes.size()-1) {
+            index = m_countryIndexes[i-1];
+            nextIndex = m_countryIndexes[i+1];
+            cout << m_countryInfo[index] << endl;
+            while (jIndex < nextIndex) {
+                jIndex = m_religionIndexes[j];
+                cout << m_countryInfo[jIndex] << endl;
+                j++;
+            }
+            i++;
+            j=0;
+        }
 }
