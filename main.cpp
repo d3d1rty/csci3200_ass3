@@ -8,6 +8,7 @@ This program uses a SAX parser to extract information from an XML document
 *******************/
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <xercesc/sax2/SAX2XMLReader.hpp>
@@ -166,7 +167,7 @@ void writeReligionFile(vector<string>, vector<int>, vector<int>);
 
 int main() {
     bool errorOccurred;
-    string xmlFilename = "test.xml";
+    string xmlFilename = "mondial-3.0.xml";
     vector<string> m_countryInfo;
     vector<int> m_countryIndexes;
     vector<int> m_cityIndexes;
@@ -217,7 +218,7 @@ int main() {
     m_cityIndexes = handler->getCityIndexes();
     m_religionIndexes = handler->getReligionIndexes();
 
-    //writeCountryFile(m_countryInfo, m_countryIndexes);
+    writeCountryFile(m_countryInfo, m_countryIndexes);
     writeReligionFile(m_countryInfo, m_countryIndexes, m_religionIndexes);
     //writeCityFile(m_countryInfo, m_countryIndexes, m_cityIndexes);
 
@@ -239,44 +240,76 @@ int main() {
 void writeCountryFile(
     vector<string> m_countryInfo,
     vector<int> m_countryIndexes) {
+        ofstream output;
         int index = 0;
         int i = 0;
 
+        output.open("country.csv");
+
         while (i < m_countryIndexes.size()) {
             index = m_countryIndexes[i];
-            cout << m_countryInfo[index] << endl;
+            output << m_countryInfo[index] << endl;
             i++;
         }
+
+        output.close();
 }
 
 void writeCityFile(
     vector<string> m_countryInfo,
     vector<int> m_countryIndexes,
     vector<int> m_cityIndexes) {
-        int index = 0;
-        int i = 0;
-
-}
-
-void writeReligionFile(vector<string> m_countryInfo,
-    vector<int> m_countryIndexes,
-    vector<int> m_religionIndexes) {
-        int index = 0;
-        int nextIndex = 0;
-        int jIndex = 0;
-        int i = 0;
+        int index;
+        int jIndex;
+        int i = 1;
         int j = 0;
 
-        while (i < m_countryIndexes.size()-1) {
+        while (i <= m_countryIndexes.size()) {
+            if (i > m_countryIndexes.size()) {
+                break;
+            }
             index = m_countryIndexes[i-1];
-            nextIndex = m_countryIndexes[i+1];
+            cout << index << endl;
             cout << m_countryInfo[index] << endl;
-            while (jIndex < nextIndex) {
-                jIndex = m_religionIndexes[j];
+            while (m_cityIndexes[j] < m_countryIndexes[i]) {
+                if (j >= m_cityIndexes.size()) {
+                break;
+            }
+                jIndex = m_cityIndexes[j];
+                cout << jIndex << endl;
                 cout << m_countryInfo[jIndex] << endl;
                 j++;
             }
             i++;
-            j=0;
         }
+}
+
+void writeReligionFile(
+    vector<string> m_countryInfo,
+    vector<int> m_countryIndexes,
+    vector<int> m_religionIndexes) {
+        ofstream output;
+        int i = 1;
+        int j = 0;
+
+        output.open("religions.csv");
+
+        while (i <= m_countryIndexes.size()) {
+            if (i > m_countryIndexes.size()) {
+                break;
+            }
+            output << m_countryInfo[m_countryIndexes[i-1]];
+            while (m_religionIndexes[j] < m_countryIndexes[i]) {
+                if (j >= m_religionIndexes.size()) {
+                break;
+            }
+                output << ",";
+                output << m_countryInfo[m_religionIndexes[j]];
+                j++;
+            }
+            output << endl;
+            i++;
+        }
+
+        output.close();
 }

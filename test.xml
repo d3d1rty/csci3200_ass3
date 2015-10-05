@@ -392,4 +392,160 @@
       <border length="428" country="f0_411" />
       <border length="206" country="f0_358" />
    </country>
+      <country id="f0_332" name="Norway" capital="f0_1583" population="4383807" datacode="NO" total_area="324220" population_growth="0.48" infant_mortality="4.9" gdp_agri="2.9" gdp_total="106200" inflation="2.5" indep_date="26 10 1905" government="constitutional monarchy" gdp_ind="34.7" gdp_serv="62.4" car_code="N">
+      <name>Norway</name>
+      <province id="f0_33463" name="Oslo" country="f0_332" capital="f0_1583" population="449337">
+         <city id="f0_1583" country="f0_332" province="f0_33463 f0_33670" longitude="10.7333" latitude="59.9333">
+            <name>Oslo</name>
+            <population year="87">449337</population>
+            <located_at type="sea" water="f0_38020" />
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33670" name="Akershus" country="f0_332" capital="f0_1583" population="393217">
+         <city id="f0_1583" country="f0_332" province="f0_33463 f0_33670" longitude="10.7333" latitude="59.9333">
+            <name>Oslo</name>
+            <population year="87">449337</population>
+            <located_at type="sea" water="f0_38020" />
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33674" name="Oestfold" country="f0_332" capital="f0_35448" population="234941">
+         <city id="f0_35448" country="f0_332" province="f0_33674" longitude="10.4" latitude="59.3">
+            <name>Moss</name>
+            <population year="87">24517</population>
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33679" name="Hedmark" country="f0_332" capital="f0_35452" population="186355">
+         <city id="f0_35452" country="f0_332" province="f0_33679" longitude="11.5" latitude="60.5">
+            <name>Hamar</name>
+            <population year="87">15685</population>
+            <located_at type="lake" water="f0_39075" />
+         </city>
+      </province>
+      <province id="f0_33684" name="Oppland" country="f0_332" capital="f0_35457" population="181791">
+         <city id="f0_35457" country="f0_332" province="f0_33684" longitude="10.3" latitude="61.1">
+            <name>Lillehammer</name>
+            <population year="87">22118</population>
+            <located_at type="lake" water="f0_39075" />
+         </city>
+      </province>
+      <province id="f0_33689" name="Buskerud" country="f0_332" capital="f0_35461" population="219967">
+         <city id="f0_35461" country="f0_332" province="f0_33689" longitude="10.1" latitude="59.4">
+            <name>Drammen</name>
+            <population year="87">50855</population>
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33693" name="Vestfold" country="f0_332" capital="f0_35465" population="191600">
+         <city id="f0_35465" country="f0_332" province="f0_33693" longitude="10.2" latitude="59.2">
+            <name>Toensberg</name>
+            <population year="87">8984</population>
+         </city>
+      </province>
+      <province id="f0_33697" name="Telemark" country="f0_332" capital="f0_35468" population="162547">
+         <city id="f0_35468" country="f0_332" province="f0_33697" longitude="9.4" latitude="59.1">
+            <name>Skien</name>
+            <population year="87">47010</population>
+         </city>
+      </province>
+      <province id="f0_33701" name="Aust Agder" country="f0_332" capital="f0_35471" population="94688">
+         <city id="f0_35471" country="f0_332" province="f0_33701" longitude="8.4" latitude="58.3">
+            <name>Arendal</name>
+            <population year="87">12174</population>
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33705" name="Vest Agder" country="f0_332" capital="f0_35475" population="140232">
+         <city id="f0_35475" country="f0_332" province="f0_33705" longitude="8" latitude="58.1">
+            <name>Kristiansand</name>
+            <population year="87">62640</population>
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33710" name="Rogaland" country="f0_332" capital="f0_35479" population="323365">
+         <city id="f0_35479" country="f0_332" province="f0_33710" longitude="5.5" latitude="59">
+            <name>Stavanger</name>
+            <population year="87">95089</population>
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33714" name="Hordaland" country="f0_332" capital="f0_35483" population="399702">
+         <city id="f0_35483" country="f0_332" province="f0_33714" longitude="5.2" latitude="60.2">
+            <name>Bergen</name>
+            <population year="87">207916</population>
+            <located_at type="sea" water="f0_38020" />
+         </city>
+      </province>
+      <province id="f0_33718" name="Sogn og Fjordane" country="f0_332" capital="f0_35487" population="106116">
+         <city id="f0_35487" country="f0_332" province="f0_33718" longitude="6.5" latitude="61.1">
+            <name>Hermannsverk</name>
+            <population year="87">706</population>
+         </city>
+      </province>
+      <province id="f0_33722" name="Moere og Romsdal" country="f0_332" capital="f0_35490" population="237290">
+         <city id="f0_35490" country="f0_332" province="f0_33722" longitude="7.1" latitude="62.5">
+            <name>Molde</name>
+            <population year="87">21448</population>
+            <located_at type="sea" water="f0_38308" />
+         </city>
+      </province>
+      <province id="f0_33726" name="Soer Trondelag" country="f0_332" capital="f0_35495" population="246824">
+         <city id="f0_35495" country="f0_332" province="f0_33726" longitude="10.2" latitude="63.3">
+            <name>Trondheim</name>
+            <population year="87">134426</population>
+            <located_at type="sea" water="f0_38308" />
+         </city>
+      </province>
+      <province id="f0_33730" name="Nord Trondelag" country="f0_332" capital="f0_35499" population="126692">
+         <city id="f0_35499" country="f0_332" province="f0_33730" longitude="11.3" latitude="64">
+            <name>Steinkjer</name>
+            <population year="87">20480</population>
+            <located_at type="sea" water="f0_38308" />
+         </city>
+      </province>
+      <province id="f0_33734" name="Nordland" country="f0_332" capital="f0_35503" population="242268">
+         <city id="f0_35503" country="f0_332" province="f0_33734" longitude="14.2" latitude="67.2">
+            <name>Bodoe</name>
+            <population year="87">34479</population>
+            <located_at type="sea" water="f0_38308" />
+         </city>
+         <city id="f0_36426" country="f0_332" province="f0_33734" longitude="14.3" latitude="68.2">
+            <name>Svolvaer</name>
+            <population year="87">4500</population>
+            <located_at type="sea" water="f0_38308" />
+         </city>
+         <city id="f0_36431" country="f0_332" province="f0_33734" longitude="17.3" latitude="68.3">
+            <name>Narvik</name>
+            <population year="87">18754</population>
+            <located_at type="sea" water="f0_38308" />
+         </city>
+      </province>
+      <province id="f0_33738" name="Troms" country="f0_332" capital="f0_35507" population="146736">
+         <city id="f0_35507" country="f0_332" province="f0_33738" longitude="19" latitude="69.4">
+            <name>Tromsoe</name>
+            <population year="87">48109</population>
+            <located_at type="sea" water="f0_38308" />
+         </city>
+      </province>
+      <province id="f0_33742" name="Finnmark" country="f0_332" capital="f0_35511" population="75667">
+         <city id="f0_35511" country="f0_332" province="f0_33742" longitude="29.5" latitude="70.5">
+            <name>Vadsoe</name>
+            <population year="87">5961</population>
+            <located_at type="sea" water="f0_38380" />
+         </city>
+         <city id="f0_36422" country="f0_332" province="f0_33742" longitude="23.4" latitude="70.4">
+            <name>Hammerfest</name>
+            <population year="87">7089</population>
+         </city>
+      </province>
+      <religions percentage="87.8">Evangelical Lutheran</religions>
+      <religions percentage="3.8">Protestant Roman Catholic</religions>
+      <languages percentage="100">Norwegian</languages>
+      <encompassed continent="f0_119" percentage="100" />
+      <border length="729" country="f0_208" />
+      <border length="1619" country="f0_397" />
+      <border length="167" country="f0_358" />
+   </country>
 </mondial>
