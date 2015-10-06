@@ -220,7 +220,7 @@ int main() {
 
     writeCountryFile(m_countryInfo, m_countryIndexes);
     writeReligionFile(m_countryInfo, m_countryIndexes, m_religionIndexes);
-    //writeCityFile(m_countryInfo, m_countryIndexes, m_cityIndexes);
+    writeCityFile(m_countryInfo, m_countryIndexes, m_cityIndexes);
 
     if (handler->isSuccessful() || !errorOccurred) {
         // cleans up pointers and ends program successfully
@@ -259,29 +259,28 @@ void writeCityFile(
     vector<string> m_countryInfo,
     vector<int> m_countryIndexes,
     vector<int> m_cityIndexes) {
-        int index;
-        int jIndex;
         int i = 1;
         int j = 0;
+        ofstream output;
+
+        output.open("cities.csv");
 
         while (i <= m_countryIndexes.size()) {
             if (i > m_countryIndexes.size()) {
                 break;
             }
-            index = m_countryIndexes[i-1];
-            cout << index << endl;
-            cout << m_countryInfo[index] << endl;
-            while (m_cityIndexes[j] < m_countryIndexes[i]) {
+            while (m_cityIndexes[j] < m_countryIndexes[i] || 
+                   m_countryIndexes[i] == m_countryIndexes[m_countryIndexes.size()]) {
                 if (j >= m_cityIndexes.size()) {
-                break;
-            }
-                jIndex = m_cityIndexes[j];
-                cout << jIndex << endl;
-                cout << m_countryInfo[jIndex] << endl;
+                    break;
+                }
+                output << m_countryInfo[m_cityIndexes[j]] << ", " << m_countryInfo[m_countryIndexes[i-1]] << endl;;
                 j++;
             }
             i++;
         }
+
+        output.close();
 }
 
 void writeReligionFile(
@@ -299,11 +298,12 @@ void writeReligionFile(
                 break;
             }
             output << m_countryInfo[m_countryIndexes[i-1]];
-            while (m_religionIndexes[j] < m_countryIndexes[i]) {
+            while (m_religionIndexes[j] < m_countryIndexes[i] ||
+                   m_countryIndexes[i] == m_countryIndexes[m_countryIndexes.size()]) {
                 if (j >= m_religionIndexes.size()) {
-                break;
-            }
-                output << ",";
+                    break;
+                }
+                output << ", ";
                 output << m_countryInfo[m_religionIndexes[j]];
                 j++;
             }
