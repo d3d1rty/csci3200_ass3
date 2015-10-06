@@ -24,6 +24,16 @@ Libcurl- https://libcurl.org/
 
 Xerces- https://xerces.apache.org/
 
+##Instructions for Xerces
+Download the tarball from http://xerces.apache.org/xerces-c/download.cgi
+
+Extract the contents to the project directory. Important: if the xerces library is not located inside the project directory, you will need to adjust the `#include` statements in the program.
+
+Go into the newly created directory and run the following commands:
+`./configure --prefix=`pwd`/../xerces
+make
+make install`
+
 ##Academic Honesty
 Please, just keep in mind that academic dishonesty is probably (definitely) not tolerated by your educational institution, so come up with your own solutions. Besides, I sincerely doubt that your assignment has the same requirements as mine, so you will probably look like an idiot if you try to turn this in.
 

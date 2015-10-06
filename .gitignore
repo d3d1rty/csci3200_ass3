@@ -1,2 +1,4 @@
 *.tar.gz
 *.out
+xerces
+xerces-c-3.1.2
