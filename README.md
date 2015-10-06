@@ -31,8 +31,10 @@ Extract the contents to the project directory. Important: if the xerces library 
 
 Go into the newly created directory and run the following commands:
 ```./configure --prefix=`pwd`/../xerces```
-```make```
-```make install```
+
+`make`
+
+`make install`
 
 ##Academic Honesty
 Please, just keep in mind that academic dishonesty is probably (definitely) not tolerated by your educational institution, so come up with your own solutions. Besides, I sincerely doubt that your assignment has the same requirements as mine, so you will probably look like an idiot if you try to turn this in.
