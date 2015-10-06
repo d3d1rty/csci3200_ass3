@@ -17,7 +17,7 @@ This program uses a SAX parser to extract information from an XML document
 #include <xercesc/util/XMLString.hpp>
 
 using namespace xercesc;
-using namespace std;
+using namespace std; // yeah, whatever, I was lazy on this assignment
 
 // creates the MySAXHandler class which extends the DefaultHandler class
 class MySAXHandler : public DefaultHandler {
@@ -161,10 +161,12 @@ void MySAXHandler::fatalError(
         success = false;
 }
 
+// prototypes the output file functions
 void writeCountryFile(vector<string>, vector<int>);
 void writeCityFile(vector<string>, vector<int>, vector<int>);
 void writeReligionFile(vector<string>, vector<int>, vector<int>);
 
+// where el magico happens
 int main() {
     bool errorOccurred;
     string xmlFilename = "mondial-3.0.xml";
@@ -237,6 +239,7 @@ int main() {
     }
 }
 
+// writes the country information to output file on individual lines
 void writeCountryFile(
     vector<string> m_countryInfo,
     vector<int> m_countryIndexes) {
@@ -255,6 +258,7 @@ void writeCountryFile(
         output.close();
 }
 
+// writes the country and related city information to output file as CSV
 void writeCityFile(
     vector<string> m_countryInfo,
     vector<int> m_countryIndexes,
@@ -283,6 +287,7 @@ void writeCityFile(
         output.close();
 }
 
+// writes the country and related religion information to output file as CSV
 void writeReligionFile(
     vector<string> m_countryInfo,
     vector<int> m_countryIndexes,
